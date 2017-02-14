@@ -6,11 +6,8 @@
   };
 
   NoteController.prototype.htmlInserter = function(){
-    var elem = document.getElementById('app');
-    elem.innerHTML = this.noteListView.viewNotes();
-    console.log(elem.innerHTML);
-    console.log(elem);
-
+    this.elem = document.getElementById('app');
+    this.elem.innerHTML = this.noteListView.viewNotes();
   };
 
   exports.NoteController = NoteController
