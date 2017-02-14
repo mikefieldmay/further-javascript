@@ -7,7 +7,6 @@ function listHasArrayOfNotes() {
 listHasArrayOfNotes()
 
 
-
 // list has a method that creates and stores a new single note
 function listCanCreateAndStoreNotes() {
   var newList = new List();
