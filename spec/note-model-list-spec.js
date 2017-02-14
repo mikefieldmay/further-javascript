@@ -13,7 +13,6 @@ function listCanCreateAndStoreNotes() {
   var newList = new List();
   newList.addNote("This is my note");
   newList.addNote("This is my other note");
-  console.log(newList._notes)
-  assert.isTrue(newList.notes().includes("This is my note") && newList.notes().includes("This is my other note"));
+  assert.isTrue(newList.notes().length === 2);
 };
 listCanCreateAndStoreNotes()
