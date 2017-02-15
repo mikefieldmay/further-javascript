@@ -4,7 +4,7 @@ function viewDisplaysListOfNotes() {
   newList.addNote("This is my note");
   newList.addNote("This is my other note");
   var listView = new ListView(newList);
-  var htmlString = '<ul><li><div>This is my note</div></li><li><div>This is my other not</div></li></ul>'
+  var htmlString = "<ul><a href='note/5'><li><div>This is my note</div></li></a><a href='note/6'><li><div>This is my other not</div></li></a></ul>"
   assert.isTrue(listView.viewNotes() === htmlString);
 }
 
@@ -15,7 +15,7 @@ function viewDisplaysASingleNote() {
   var newList = new List();
   newList.addNote("This is my note");
   var listView = new ListView(newList);
-  var htmlString = '<ul><li><div>This is my note</div></li></ul>'
+  var htmlString = "<ul><a href='note/7'><li><div>This is my note</div></li></a></ul>"
   assert.isTrue(listView.viewNotes() === htmlString);
 }
 
@@ -28,7 +28,7 @@ function viewDisplaysLongListOfNotes() {
   newList.addNote("This is my other note");
   newList.addNote("This is my third note");
   var listView = new ListView(newList);
-  var htmlString = '<ul><li><div>This is my note</div></li><li><div>This is my other not</div></li><li><div>This is my third not</div></li></ul>'
+  var htmlString = "<ul><a href='note/8'><li><div>This is my note</div></li></a><a href='note/9'><li><div>This is my other not</div></li></a><a href='note/10'><li><div>This is my third not</div></li></a></ul>"
   assert.isTrue(listView.viewNotes() === htmlString);
 }
 
@@ -49,7 +49,7 @@ function viewDisplaysOnlyFirstTwentyCharacters(){
   var newList = new List();
   newList.addNote("This is my note. It is very long and I don't want all of it to be displayed");
   var listView = new ListView(newList);
-  assert.isTrue(listView.viewNotes() === '<ul><li><div>This is my note. It </div></li></ul>');
+  assert.isTrue(listView.viewNotes() === "<ul><a href='note/11'><li><div>This is my note. It </div></li></a></ul>");
 
 }
 viewDisplaysOnlyFirstTwentyCharacters()
