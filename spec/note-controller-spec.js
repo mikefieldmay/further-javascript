@@ -1,22 +1,11 @@
-function aNoteControllerCanBeInstantiated(){
-  listModel = new List();
-  var noteController = new NoteController(listModel, document);
-  assert.isTrue(listModel.notes().length === 1);
-};
-
-aNoteControllerCanBeInstantiated();
-
 function showsNoteOnAPage(){
   listModel = new List();
-  var doc = document
   dummyElement = document.createElement('div')
-  dummyElement.setAttribute("id", "app");
-  doc.body.appendChild(dummyElement)
-  var noteController = new NoteController(listModel, doc);
-  console.log(doc.getElementById('app'))
+  var listView = new ListView(listModel)
+  listModel.addNote('This is my note');
+  var noteController = new NoteController(listView, dummyElement);
   noteController.htmlInserter()
-  console.log(dummyElement)
-  assert.isTrue(dummyElement.innerHTML === '<ul><li><div>This is my note</div></li></ul>')
+  assert.isTrue(noteController.elem.innerHTML === '<ul><li><div>This is my note</div></li></ul>')
 }
 
 showsNoteOnAPage();
