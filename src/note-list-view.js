@@ -6,7 +6,7 @@
   ListView.prototype.viewNotes = function(){
     var string = ""
       for(i = 0; i < this._list.length; i++) {
-       string +=  "<li><div>" + this._list[i].text() + "</div></li>"
+       string +=  "<li><div>" + this._list[i].text().substr(0, 20) + "</div></li>"
       }
     return "<ul>" + string + "</ul>"
   }
