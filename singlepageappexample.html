@@ -21,14 +21,19 @@
       };
 
       function showAnimalForCurrentPage() {
+        console.log(2)
+        console.log(window)
+        console.log(window.location)
         showAnimal(getAnimalFromUrl(window.location));
       };
 
       function getAnimalFromUrl(location) {
+        console.log(3)
         return location.hash.split("#")[1];
       };
 
       function showAnimal(animal) {
+        console.log(4)
         document
           .getElementById("animal")
           .innerHTML = animal;

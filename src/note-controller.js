@@ -1,35 +1,44 @@
 (function(exports){
 
-   function NoteController(listView, elem){
+   function NoteController(listView, listElem, noteElem){
     this.noteListView = listView;
-    this.elem = elem
+    this.list = listElem;
+    this.note = noteElem;
   };
 
   NoteController.prototype.htmlInserter = function(){
-    this.elem.innerHTML = this.noteListView.viewNotes();
+    this.list.innerHTML = this.noteListView.viewNotes();
   };
 
-  NoteController.prototype.singleNoteViewer = function(element, noteView) {
-    this.elem2 = element
-    this.elem2.innerHTML = noteView.viewNote();
+  NoteController.prototype.changeNoteByURL = function(location) {
+    window.addEventListener("hashchange", this.showNoteForCurrentPage(location))
   };
 
-  NoteController.prototype.getNoteFromURL = function (location) {
-    console.log(location)
+  NoteController.prototype.showNoteForCurrentPage = function(location) {
+    noteView = new NoteView(this.getNoteFromURL(location))
+    this.singleNoteViewer(noteView)
+  };
+
+  NoteController.prototype.getNoteFromURL = function(location) {
     var noteId = location.hash.split("#notes/")[1]
-    console.log(noteId)
-    console.log(this.noteListView._list)
     return this.noteListView._list[noteId]
+  };
+
+  NoteController.prototype.singleNoteViewer = function(noteView) {
+    this.note.innerHTML = noteView.viewNote();
   };
 
   exports.NoteController = NoteController
 })(this)
 
-// var listModel = new List();
-// var listView = new ListView(listModel)
-// listModel.addNote('This is my note');
-// listModel.addNote('This is my second note');
-// listModel.addNote('This is my third note');
-// var elem = document.getElementById('app')
-// var noteController = new NoteController(listView, elem);
-// noteController.htmlInserter()
+var listModel = new List();
+var listView = new ListView(listModel)
+listModel.addNote('This is my note');
+listModel.addNote('This is my second note');
+listModel.addNote('This is my third note');
+var list = document.getElementById('app');
+var note = document.getElementById('note');
+var noteController = new NoteController(listView, list, note);
+noteController.htmlInserter()
+var location = window.location
+noteController.changeNoteByURL()
