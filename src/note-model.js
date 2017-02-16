@@ -5,6 +5,7 @@
   function Note(string) {
     this._text = (string)
     this.id = idcounter++;
+    console.log(this.id)
   };
 
    Note.prototype.text = function() {
