@@ -40,5 +40,4 @@ var list = document.getElementById('app');
 var note = document.getElementById('note');
 var noteController = new NoteController(listView, list, note);
 noteController.htmlInserter()
-var location = window.location
 noteController.changeNoteByURL()
