@@ -1,22 +1,23 @@
 function noteViewTest() {
-  
-  function NoteDouble(){}
-  NoteDouble.prototype = {
+  console.log("%cnote view test", 'color: blue')
+
+  var noteDouble = {
     text: function(){
       return 'This is my example note'
     }
   }
-  var note = new NoteDouble()
-  var noteView = new NoteView(note)
+
+  var noteView = new NoteView(noteDouble)
 
   function instantiatesSingleNoteView(){
-
-    assert.isTrue(noteView._note === note)
+    console.log('instantiateSingleNoteView')
+    assert.isTrue(noteView._note === noteDouble)
   }
 
   instantiatesSingleNoteView()
 
   function showsSingleNoteOnPage(){
+    console.log('showsSingleNoteOnPage')
     assert.isTrue(noteView.viewNote() === '<div>This is my example note</div>')
   }
 

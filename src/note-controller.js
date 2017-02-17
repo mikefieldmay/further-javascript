@@ -1,27 +1,28 @@
 (function(exports){
 
-   function NoteController(listView, listElem, noteElem){
+   function NoteController(listView, listElem, noteElem, location){
     this.noteListView = listView;
     this.list = listElem;
     this.note = noteElem;
+    this.location = location
   };
 
   NoteController.prototype.htmlInserter = function(){
     this.list.innerHTML = this.noteListView.viewNotes();
   };
 
-  NoteController.prototype.changeNoteByURL = function(location) {
-    window.addEventListener("hashchange", this.showNoteForCurrentPage(location))
+  NoteController.prototype.changeNoteByURL = function() {
+    window.addEventListener("hashchange", this.showNoteForCurrentPage.bind(this),false)
   };
 
-  NoteController.prototype.showNoteForCurrentPage = function(location) {
-    noteView = new NoteView(this.getNoteFromURL(location))
+  NoteController.prototype.showNoteForCurrentPage = function() {
+    noteView = new NoteView(this.getNoteFromURL())
     this.singleNoteViewer(noteView)
   };
 
-  NoteController.prototype.getNoteFromURL = function(location) {
-    var noteId = location.hash.split("#notes/")[1]
-    return this.noteListView._list[noteId]
+  NoteController.prototype.getNoteFromURL = function() {
+    var noteId = this.location.hash.split("#note/")[1]
+    return this.noteListView.list()[noteId]
   };
 
   NoteController.prototype.singleNoteViewer = function(noteView) {
@@ -30,14 +31,3 @@
 
   exports.NoteController = NoteController
 })(this)
-
-var listModel = new List();
-var listView = new ListView(listModel)
-listModel.addNote('This is my note');
-listModel.addNote('This is my second note');
-listModel.addNote('This is my third note');
-var list = document.getElementById('app');
-var note = document.getElementById('note');
-var noteController = new NoteController(listView, list, note);
-noteController.htmlInserter()
-noteController.changeNoteByURL()
