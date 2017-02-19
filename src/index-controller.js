@@ -8,4 +8,4 @@ var note = document.getElementById('note');
 var noteController = new NoteController(listView, list, note, window.location);
 noteController.htmlInserter()
 console.log(1)
-noteController.changeNoteByURL()
+noteController.changeNoteByURL(window)

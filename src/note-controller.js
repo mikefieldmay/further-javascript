@@ -11,7 +11,7 @@
     this.list.innerHTML = this.noteListView.viewNotes();
   };
 
-  NoteController.prototype.changeNoteByURL = function() {
+  NoteController.prototype.changeNoteByURL = function(window) {
     window.addEventListener("hashchange", this.showNoteForCurrentPage.bind(this),false)
   };
 
